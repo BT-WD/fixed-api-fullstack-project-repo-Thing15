@@ -1,1 +1,122 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f8f8;  /* Light background for a fun and clean look */
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* Auth Container */
+.auth-container {
+  width: 100%;
+  max-width: 380px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* App Icon */
+.app-icon img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;  /* Prevent stretching */
+  margin-bottom: 20px;
+}
+
+/* Heading */
+h1 {
+  font-size: 24px;
+  color: #4CAF50; /* Bright green to match the theme */
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Google Sign-in Button */
+.google-signin {
+  width: 100%;
+  padding: 15px;
+  background-color: #4285F4;  /* Google’s blue */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.google-signin img {
+  width: 28px;  /* Increased the size of the Google icon */
+  height: 28px; /* Keep the aspect ratio consistent */
+  margin-right: 15px;  /* More space between icon and text */
+  padding: 5px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* Auth Form */
+.auth-form {
+  margin-bottom: 20px;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f4f4f4;
+  font-size: 16px;
+}
+
+/* Sign-In Button */
+.sign-in-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #FF9800; /* Bright orange button for action */
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.sign-in-btn:hover {
+  background-color: #e68900;  /* Slightly darker on hover */
+}
+
+/* Create Account Link */
+.create-account {
+  font-size: 14px;
+  color: #777;
+}
+
+.create-account a {
+  color: #FF9800;  /* Orange color for the link */
+  text-decoration: none;
+}
+
+.create-account a:hover {
+  text-decoration: underline;
+}

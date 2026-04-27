@@ -1,11 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>API Full Stack Project</title>
-  </head>
-  <body>
-    <!-- You code goes here-->
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Dog Image Generator</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="auth-container">
+    <!-- App Icon -->
+    <div class="app-icon">
+      <img src="https://img.freepik.com/premium-vector/dog-logo-design-icon-symbol-vector-illustration_1123785-3846.jpg" alt="Dog App Icon">
+    </div>
+
+    <!-- Heading -->
+    <h1>Welcome to Dog Image Generator!</h1>
+    <p>Sign in to create your own gallery of adorable dogs!</p>
+
+    <!-- Google Sign-in Button -->
+    <button class="google-signin">
+      <img src="google.png" alt="Google Icon">
+      Sign in with Google
+    </button>
+
+    <!-- Email & Password Form -->
+    <form class="auth-form">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit" class="sign-in-btn">Sign In</button>
+    </form>
+
+    <!-- Create Account Link -->
+    <p class="create-account">
+      New to Dog Image Generator? <a href="/signup">Create Account</a>
+    </p>
+  </div>
+</body>
 </html>
