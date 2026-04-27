@@ -36,4 +36,48 @@
     </p>
   </div>
 </body>
+<body>
+  <!-- Header Section with User Info -->
+  <header class="header">
+    <div class="welcome">Welcome, <span id="user-name">[User]</span>!</div>
+  </header>
+
+  <!-- Main Content Container -->
+  <div class="dashboard-container">
+    
+    <!-- Left Panel - User Album -->
+    <div class="album-section">
+      <h2>Your Album</h2>
+      <div class="album-image">
+        <p>First Album Image or Pin Image</p>
+      </div>
+    </div>
+
+    <!-- Right Panel - Image Generator -->
+    <div class="generate-section">
+      <h2>Generate an Image</h2>
+      
+      <div class="dropdown-container">
+        <select class="breed-dropdown">
+          <option value="bulldog">Bulldog</option>
+          <option value="poodle">Poodle</option>
+          <option value="retriever">Retriever</option>
+          <!-- More dog breeds here -->
+        </select>
+      </div>
+      
+      <div class="generate-btn-container">
+        <button class="generate-btn">Generate</button>
+      </div>
+
+      <div class="image-container">
+        <img id="generated-image" src="" alt="Generated Dog Image" />
+      </div>
+
+      <div class="save-btn-container">
+        <button class="save-btn">Save to Album</button>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
