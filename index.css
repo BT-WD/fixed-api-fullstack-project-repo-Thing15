@@ -167,7 +167,7 @@ body {
 .dashboard-container {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px 0;
   flex-grow: 1;
   box-sizing: border-box;
   height: calc(100vh - 80px); /* Adjust based on header height */
@@ -183,7 +183,6 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   height: 100%;
-  margin-right: 10px;
 }
 
 .album-section h2 {
@@ -213,7 +212,6 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   height: 100%;
-  margin-left: 10px;
 }
 
 .generate-section h2 {

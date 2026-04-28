@@ -8,6 +8,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+const database = firebase.database();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 const authPage = document.getElementById('auth-container');
@@ -90,10 +91,90 @@ function showDashboard(user) {
   authPage.style.display = 'none';
   dashboardPage.style.display = 'block';
   document.getElementById('user-name').textContent = user.displayName || user.email || 'User';
+  loadUserAlbum(user.uid);
 }
 
 function showAuth() {
   authPage.style.display = 'block';
   dashboardPage.style.display = 'none';
   switchToSignIn();
+}
+
+// Dog CEO API logic
+const breedDropdown = document.querySelector('.breed-dropdown');
+const generateBtn = document.querySelector('.generate-btn');
+const saveBtn = document.querySelector('.save-btn');
+const generatedImage = document.getElementById('generated-image');
+const albumImage = document.querySelector('.album-image');
+
+generateBtn.addEventListener('click', async () => {
+  const breed = breedDropdown.value;
+  if (!breed) {
+    alert('Please select a breed');
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://dog.ceo/api/breed/${breed}/images/random`);
+    const data = await response.json();
+    if (data.status === 'success') {
+      generatedImage.src = data.message;
+      generatedImage.style.display = 'block';
+    } else {
+      alert('Failed to fetch image');
+    }
+  } catch (error) {
+    console.error('Error fetching dog image:', error);
+    alert('Error fetching image');
+  }
+});
+
+saveBtn.addEventListener('click', () => {
+  if (generatedImage.src && generatedImage.src !== window.location.href && auth.currentUser) {
+    const userId = auth.currentUser.uid;
+    database.ref('users/' + userId + '/images').push({
+      url: generatedImage.src,
+      timestamp: Date.now()
+    }).then(() => {
+      addImageToAlbum(generatedImage.src);
+    }).catch(error => {
+      console.error('Error saving image:', error);
+      alert('Failed to save image: ' + error.message);
+    });
+  } else {
+    alert('No image to save or not logged in');
+  }
+});
+
+function addImageToAlbum(url) {
+  const img = document.createElement('img');
+  img.src = url;
+  img.style.maxWidth = '100%';
+  img.style.borderRadius = '8px';
+  img.style.marginBottom = '10px';
+  img.style.display = 'block';
+
+  if (albumImage.querySelector('p')) {
+    albumImage.innerHTML = '';
+  }
+  albumImage.appendChild(img);
+}
+
+function loadUserAlbum(userId) {
+  albumImage.innerHTML = '<p>Loading...</p>';
+  database.ref('users/' + userId + '/images').once('value').then(snapshot => {
+    albumImage.innerHTML = '';
+    const data = snapshot.val();
+    if (!data) {
+      albumImage.innerHTML = '<p>No images yet</p>';
+    } else {
+      const images = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
+      images.forEach(item => {
+        addImageToAlbum(item.url);
+      });
+    }
+  }).catch(error => {
+    console.error('Error loading album:', error);
+    albumImage.innerHTML = '<p>Error loading album</p>';
+  });
 }
