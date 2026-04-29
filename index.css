@@ -1,4 +1,6 @@
-/* Global Styles */
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
 * {
   margin: 0;
   padding: 0;
@@ -6,24 +8,39 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f8f8f8;  /* Light background for a fun and clean look */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #fef9f3 0%, #f5e6d3 100%);
   color: #333;
   display: flex;
   flex-direction: column;
   height: 100vh;
   padding: 20px;
+  min-height: 100vh;
 }
 
-/* Auth Container */
+/* ============================================
+   AUTH PAGE STYLES
+   ============================================ */
 .auth-container {
   width: 100%;
-  max-width: 380px;
+  max-width: 420px;
   background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 50px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(139, 98, 60, 0.15);
   text-align: center;
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 #auth-container {
@@ -32,279 +49,535 @@ body {
 
 /* App Icon */
 .app-icon img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;  /* Prevent stretching */
-  margin-bottom: 20px;
+  width: 110px;
+  height: 110px;
+  border-radius: 20px;
+  object-fit: cover;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 20px rgba(139, 98, 60, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.app-icon img:hover {
+  transform: scale(1.05);
 }
 
 /* Heading */
 h1 {
-  font-size: 24px;
-  color: #4CAF50; /* Bright green to match the theme */
-  margin-bottom: 10px;
+  font-size: 32px;
+  color: #8b5c3d;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 p {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 30px;
+  font-size: 15px;
+  color: #888;
+  margin-bottom: 35px;
+  line-height: 1.6;
+  font-weight: 400;
 }
 
 /* Google Sign-in Button */
 .google-signin {
   width: 100%;
-  padding: 15px;
-  background-color: #4285F4;  /* Google’s blue */
+  padding: 14px 16px;
+  background-color: #4285F4;
   color: white;
   font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+.google-signin:hover {
+  background-color: #357ae8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+}
+
+.google-signin:active {
+  transform: translateY(0);
 }
 
 .google-signin img {
-  width: 28px;  /* Increased the size of the Google icon */
-  height: 28px; /* Keep the aspect ratio consistent */
-  margin-right: 15px;  /* More space between icon and text */
-  padding: 5px;
+  width: 22px;
+  height: 22px;
+  margin-right: 12px;
+  padding: 3px;
   background-color: white;
   border-radius: 50%;
 }
 
 /* Auth Form */
 .auth-form {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .auth-form input {
   width: 100%;
-  padding: 12px;
+  padding: 13px;
   margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #f4f4f4;
-  font-size: 16px;
+  border-radius: 10px;
+  border: 1.5px solid #e0e0e0;
+  background-color: #fafafa;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #d4a574;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+}
+
+.auth-form input::placeholder {
+  color: #aaa;
 }
 
 /* Sign-In Button */
 .sign-in-btn {
   width: 100%;
-  padding: 15px;
-  background-color: #FF9800; /* Bright orange button for action */
+  padding: 14px;
+  background: linear-gradient(135deg, #d4a574 0%, #c2934e 100%);
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
+  color: white;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
 }
 
 .sign-in-btn:hover {
-  background-color: #e68900;  /* Slightly darker on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
+}
+
+.sign-in-btn:active {
+  transform: translateY(0);
 }
 
 /* Create Account Link */
 .create-account {
   font-size: 14px;
-  color: #777;
+  color: #888;
+  font-weight: 500;
 }
 
 .create-account a {
-  color: #FF9800;  /* Orange color for the link */
+  color: #d4a574;
   text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .create-account a:hover {
+  color: #c2934e;
   text-decoration: underline;
 }
 
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Body Styling */
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f8f8f8;
-  color: #333;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
+/* ============================================
+   DASHBOARD PAGE STYLES
+   ============================================ */
 
 /* Header Section */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #3b2f2f;
+  background: linear-gradient(135deg, #8b5c3d 0%, #6d4728 100%);
   color: white;
-  padding: 20px 24px;
-  font-size: 24px;
+  padding: 18px 28px;
+  font-size: 22px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(139, 98, 60, 0.25);
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .sign-out-btn {
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
   color: white;
   padding: 10px 18px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .sign-out-btn:hover {
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
 }
 
 /* Main Container */
 .dashboard-container {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 0;
   flex-grow: 1;
-  box-sizing: border-box;
-  height: calc(100vh - 80px); /* Adjust based on header height */
-  overflow: hidden;
+  gap: 24px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  gap: 20px;
+  overflow: hidden;
 }
 
 #dashboard-container {
   width: 100%;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Left Panel - Album Section */
 .album-section {
   flex: 1;
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(139, 98, 60, 0.12);
   overflow-y: auto;
-  height: 100%;
+  border: 1px solid #f0ede7;
 }
 
 .album-section h2 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: #3b2f2f;
+  font-size: 24px;
+  margin-bottom: 18px;
+  color: #8b5c3d;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.album-section h2::before {
+  content: "📸";
+  font-size: 28px;
 }
 
 .album-image {
-  background-color: #ccc;
-  height: calc(100% - 50px); /* Adjust for header */
-  border-radius: 8px;
+  background: linear-gradient(135deg, #f5e6d3 0%, #ebe0d0 100%);
+  height: calc(100% - 60px);
+  border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #999;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
+  border: 2px dashed #d4a574;
+  padding: 20px;
+  text-align: center;
+  flex-direction: column;
+}
+
+.album-image img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(139, 98, 60, 0.2);
+  margin-bottom: 10px;
+  display: block;
 }
 
 /* Right Panel - Generate Image Section */
 .generate-section {
   flex: 1;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(139, 98, 60, 0.12);
   overflow-y: auto;
-  height: 100%;
+  border: 1px solid #f0ede7;
+  display: flex;
+  flex-direction: column;
 }
 
 .generate-section h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
-  color: #3b2f2f;
+  font-size: 24px;
+  margin-bottom: 24px;
+  color: #8b5c3d;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.dropdown-container select {
+.generate-section h2::before {
+  content: "🎲";
+  font-size: 28px;
+}
+
+/* Breed Dropdown */
+.breed-dropdown {
   width: 100%;
-  padding: 10px;
+  padding: 13px 16px;
   margin-bottom: 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-}
-
-.generate-btn-container {
-  text-align: center;
-}
-
-.generate-btn {
-  background-color: #4285F4;
-  color: white;
-  padding: 12px 30px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 1.5px solid #e0e0e0;
+  background-color: #fafafa;
+  color: #333;
   cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 500;
+}
+
+.breed-dropdown:hover {
+  border-color: #d4a574;
+  background-color: #fff;
+}
+
+.breed-dropdown:focus {
+  outline: none;
+  border-color: #d4a574;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+}
+
+.breed-dropdown option {
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Generate Button */
+.generate-btn {
+  background: linear-gradient(135deg, #4285F4 0%, #357ae8 100%);
+  color: white;
+  padding: 13px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+  width: 100%;
+  margin-bottom: 24px;
 }
 
 .generate-btn:hover {
-  background-color: #357ae8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
 }
 
+.generate-btn:active {
+  transform: translateY(0);
+}
+
+/* Image Container */
 .image-container {
-  margin-top: 20px;
-  text-align: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5e6d3 0%, #ebe0d0 100%);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  min-height: 300px;
+  border: 2px dashed #d4a574;
+  overflow: hidden;
 }
 
 #generated-image {
-  max-width: 100%;
-  max-height: 200px; /* Reduced to fit */
-  border-radius: 8px;
-  background-color: #ddd;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 8px 24px rgba(139, 98, 60, 0.2);
+  display: none;
 }
 
-.save-btn-container {
-  text-align: center;
-  margin-top: 20px;
+#generated-image[src]:not([src=""]) {
+  display: block;
 }
 
+/* Save Button */
 .save-btn {
-  background-color: #ff9800;
+  background: linear-gradient(135deg, #d4a574 0%, #c2934e 100%);
   color: white;
-  padding: 12px 30px;
-  font-size: 16px;
+  padding: 13px;
+  font-size: 15px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+  width: 100%;
 }
 
 .save-btn:hover {
-  background-color: #e68900;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+.save-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+.album-section::-webkit-scrollbar,
+.generate-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.album-section::-webkit-scrollbar-track,
+.generate-section::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.album-section::-webkit-scrollbar-thumb,
+.generate-section::-webkit-scrollbar-thumb {
+  background: #d4a574;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.album-section::-webkit-scrollbar-thumb:hover,
+.generate-section::-webkit-scrollbar-thumb:hover {
+  background: #c2934e;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1024px) {
   .dashboard-container {
     flex-direction: column;
-    height: auto;
-    padding: 10px;
+    gap: 20px;
   }
 
-  .album-section, .generate-section {
+  .album-section,
+  .generate-section {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 20px;
+    font-size: 18px;
+  }
+
+  .welcome {
     width: 100%;
-    height: auto;
-    margin-bottom: 20px;
   }
 
-  .album-image {
-    height: 200px; /* Fixed height on mobile */
+  .sign-out-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .album-section,
+  .generate-section {
+    padding: 16px;
+    min-height: 300px;
+  }
+
+  .album-section h2,
+  .generate-section h2 {
+    font-size: 20px;
+  }
+
+  .image-container {
+    min-height: 250px;
+  }
+
+  .auth-container {
+    max-width: 100%;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .generate-btn,
+  .save-btn {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+
+  .header {
+    font-size: 16px;
+    padding: 12px 16px;
+  }
+
+  .auth-container {
+    padding: 24px;
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .album-section,
+  .generate-section {
+    padding: 12px;
+  }
+
+  .album-section h2,
+  .generate-section h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .breed-dropdown,
+  .generate-btn,
+  .save-btn {
+    padding: 11px;
+    font-size: 14px;
   }
 }
