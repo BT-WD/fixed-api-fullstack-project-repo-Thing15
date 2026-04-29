@@ -107,6 +107,49 @@ const saveBtn = document.querySelector('.save-btn');
 const generatedImage = document.getElementById('generated-image');
 const albumImage = document.querySelector('.album-image');
 
+const defaultBreeds = [
+  'bulldog', 'poodle', 'retriever', 'beagle', 'boxer', 'chihuahua',
+  'dalmatian', 'husky', 'labrador', 'rottweiler', 'shiba', 'pug',
+  'spaniel', 'terrier', 'akita'
+];
+
+function formatBreedName(breed) {
+  return breed
+    .split(/[-\s]+/)
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
+function populateBreedDropdown() {
+  fetch('https://dog.ceo/api/breeds/list/all')
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.status !== 'success') {
+        throw new Error('Failed to load breed list');
+      }
+      const breeds = Object.keys(data.message).sort();
+      breedDropdown.innerHTML = '<option value="" disabled selected>Select a breed</option>';
+      breeds.forEach((breed) => {
+        const option = document.createElement('option');
+        option.value = breed;
+        option.textContent = formatBreedName(breed);
+        breedDropdown.appendChild(option);
+      });
+    })
+    .catch((error) => {
+      console.error('Error loading breeds:', error);
+      breedDropdown.innerHTML = '<option value="" disabled selected>Select a breed</option>';
+      defaultBreeds.forEach((breed) => {
+        const option = document.createElement('option');
+        option.value = breed;
+        option.textContent = formatBreedName(breed);
+        breedDropdown.appendChild(option);
+      });
+    });
+}
+
+populateBreedDropdown();
+
 generateBtn.addEventListener('click', async () => {
   const breed = breedDropdown.value;
   if (!breed) {
