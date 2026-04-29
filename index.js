@@ -189,15 +189,44 @@ saveBtn.addEventListener('click', () => {
   }
 });
 
-function addImageToAlbum(url) {
+function addImageToAlbum(url, imageKey = null) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'album-image-wrapper';
+  wrapper.setAttribute('data-key', imageKey);
+
   const img = document.createElement('img');
   img.src = url;
   img.alt = 'Dog image';
 
+  const deleteBtn = document.createElement('button');
+  deleteBtn.className = 'delete-image-btn';
+  deleteBtn.innerHTML = '✕';
+  deleteBtn.title = 'Delete image';
+  deleteBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (auth.currentUser && imageKey) {
+      const userId = auth.currentUser.uid;
+      database.ref(`users/${userId}/images/${imageKey}`).remove()
+        .then(() => {
+          wrapper.remove();
+          if (albumImage.children.length === 0) {
+            albumImage.innerHTML = '<p>No images yet</p>';
+          }
+        })
+        .catch(error => {
+          console.error('Error deleting image:', error);
+          alert('Failed to delete image: ' + error.message);
+        });
+    }
+  });
+
+  wrapper.appendChild(img);
+  wrapper.appendChild(deleteBtn);
+
   if (albumImage.querySelector('p')) {
     albumImage.innerHTML = '';
   }
-  albumImage.appendChild(img);
+  albumImage.appendChild(wrapper);
 }
 
 function loadUserAlbum(userId) {
@@ -208,9 +237,9 @@ function loadUserAlbum(userId) {
     if (!data) {
       albumImage.innerHTML = '<p>No images yet</p>';
     } else {
-      const images = Object.values(data).sort((a, b) => b.timestamp - a.timestamp);
-      images.forEach(item => {
-        addImageToAlbum(item.url);
+      const imageKeys = Object.keys(data).sort((a, b) => data[b].timestamp - data[a].timestamp);
+      imageKeys.forEach(key => {
+        addImageToAlbum(data[key].url, key);
       });
     }
   }).catch(error => {
