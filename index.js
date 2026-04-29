@@ -178,8 +178,8 @@ saveBtn.addEventListener('click', () => {
     database.ref('users/' + userId + '/images').push({
       url: generatedImage.src,
       timestamp: Date.now()
-    }).then(() => {
-      addImageToAlbum(generatedImage.src);
+    }).then((result) => {
+      addImageToAlbum(generatedImage.src, result.key);
     }).catch(error => {
       console.error('Error saving image:', error);
       alert('Failed to save image: ' + error.message);
@@ -188,6 +188,13 @@ saveBtn.addEventListener('click', () => {
     alert('No image to save or not logged in');
   }
 });
+
+function clearAlbumPlaceholder() {
+  const placeholder = albumImage.querySelector('p');
+  if (placeholder) {
+    albumImage.innerHTML = '';
+  }
+}
 
 function addImageToAlbum(url, imageKey = null) {
   const wrapper = document.createElement('div');
@@ -237,9 +244,9 @@ function loadUserAlbum(userId) {
     if (!data) {
       albumImage.innerHTML = '<p>No images yet</p>';
     } else {
-      const imageKeys = Object.keys(data).sort((a, b) => data[b].timestamp - data[a].timestamp);
-      imageKeys.forEach(key => {
-        addImageToAlbum(data[key].url, key);
+      const entries = Object.entries(data).sort(([, a], [, b]) => b.timestamp - a.timestamp);
+      entries.forEach(([key, value]) => {
+        addImageToAlbum(value.url, key);
       });
     }
   }).catch(error => {
