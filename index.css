@@ -242,12 +242,14 @@ p {
   max-width: 1400px;
   margin: 0 auto;
   overflow: hidden;
+  height: calc(100vh - 100px);
 }
 
 #dashboard-container {
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 40px);
 }
 
 /* Left Panel - Album Section */
@@ -259,6 +261,7 @@ p {
   box-shadow: 0 6px 20px rgba(139, 98, 60, 0.12);
   overflow-y: auto;
   border: 1px solid #f0ede7;
+  min-height: 0;
 }
 
 .album-section h2 {
@@ -269,6 +272,7 @@ p {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .album-section h2::before {
@@ -278,28 +282,47 @@ p {
 
 .album-image {
   background: linear-gradient(135deg, #f5e6d3 0%, #ebe0d0 100%);
-  height: calc(100% - 60px);
+  flex: 1;
   border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-gap: 12px;
   color: #999;
   font-size: 16px;
   font-weight: 600;
   border: 2px dashed #d4a574;
-  padding: 20px;
+  padding: 16px;
   text-align: center;
-  flex-direction: column;
+  overflow-y: auto;
+  align-content: start;
+  min-height: 0;
+}
+
+.album-image p {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+  font-size: 16px;
 }
 
 .album-image img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 120px;
   border-radius: 10px;
   object-fit: cover;
-  box-shadow: 0 8px 24px rgba(139, 98, 60, 0.2);
-  margin-bottom: 10px;
-  display: block;
+  box-shadow: 0 4px 12px rgba(139, 98, 60, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.album-image img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(139, 98, 60, 0.25);
+  border-color: #d4a574;
 }
 
 /* Right Panel - Generate Image Section */
@@ -313,6 +336,7 @@ p {
   border: 1px solid #f0ede7;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .generate-section h2 {
@@ -323,6 +347,7 @@ p {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .generate-section h2::before {

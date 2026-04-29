@@ -192,10 +192,7 @@ saveBtn.addEventListener('click', () => {
 function addImageToAlbum(url) {
   const img = document.createElement('img');
   img.src = url;
-  img.style.maxWidth = '100%';
-  img.style.borderRadius = '8px';
-  img.style.marginBottom = '10px';
-  img.style.display = 'block';
+  img.alt = 'Dog image';
 
   if (albumImage.querySelector('p')) {
     albumImage.innerHTML = '';
